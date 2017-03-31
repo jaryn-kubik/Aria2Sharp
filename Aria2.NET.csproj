@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1982edc5-fd73-45ec-b7f5-0ef84a0e4cec</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1982EDC5-FD73-45EC-B7F5-0EF84A0E4CEC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aria2.NET</RootNamespace>
     <AssemblyName>Aria2.NET</AssemblyName>
@@ -29,25 +29,40 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aria2.cs" />
+    <Compile Include="Aria2Exception.cs" />
+    <Compile Include="Aria2Notification.cs" />
+    <Compile Include="Data\Aria2File.cs" />
+    <Compile Include="Data\Aria2Info.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ClientWebSocketEx.cs" />
+    <Compile Include="Data\Aria2Peer.cs" />
+    <Compile Include="Data\Aria2Server.cs" />
+    <Compile Include="Data\Aria2Stats.cs" />
+    <Compile Include="Data\Aria2Uri.cs" />
+    <Compile Include="Data\Aria2Version.cs" />
+    <Compile Include="Methods\Aria2.WithOptions.cs" />
+    <Compile Include="Methods\Aria2.System.cs" />
+    <Compile Include="Data\Aria2Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Methods\Aria2.Tell.cs" />
+    <Compile Include="Methods\Aria2.Control.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
