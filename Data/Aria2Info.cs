@@ -26,13 +26,13 @@ namespace Aria2Sharp
         public string ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
 
-        //TODO: bittorrent
+        public Aria2Bittorent Bittorrent { get; set; }
         public string InfoHash { get; set; }
         public long NumSeeders { get; set; }
         public bool Seeder { get; set; }
         public string BelongsTo { get; set; }
-        public IReadOnlyList<string> followedBy { get; set; }
-        public IReadOnlyList<string> following { get; set; }
+        public IReadOnlyList<string> FollowedBy { get; set; }
+        public IReadOnlyList<string> Following { get; set; }
 
         public enum InfoStatus { Active, Waiting, Paused, Error, Complete, Removed }
     }

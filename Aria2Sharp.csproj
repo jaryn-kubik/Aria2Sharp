@@ -46,6 +46,7 @@
     <Compile Include="Aria2Exception.cs" />
     <Compile Include="Aria2Notification.cs" />
     <Compile Include="Aria2RPC.cs" />
+    <Compile Include="Data\Aria2Bittorent.cs" />
     <Compile Include="Data\Aria2File.cs" />
     <Compile Include="Data\Aria2Info.cs" />
     <Compile Include="ClientWebSocketEx.cs" />
