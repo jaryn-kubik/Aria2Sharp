@@ -14,7 +14,7 @@ namespace Aria2.NET
 
         public event EventHandler<string> Message;
         public ClientWebSocketOptions Options => webSocket.Options;
-        public Task Connected => connected.Task;
+        public bool Connected => connected.Task.IsCompleted;
         
         public Task SendAsync(string str)
         {

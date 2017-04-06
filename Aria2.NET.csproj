@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1982EDC5-FD73-45EC-B7F5-0EF84A0E4CEC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aria2.NET</RootNamespace>
     <AssemblyName>Aria2.NET</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,7 +48,6 @@
     <Compile Include="Aria2RPC.cs" />
     <Compile Include="Data\Aria2File.cs" />
     <Compile Include="Data\Aria2Info.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ClientWebSocketEx.cs" />
     <Compile Include="Data\Aria2Peer.cs" />
     <Compile Include="Data\Aria2Server.cs" />
