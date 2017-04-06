@@ -15,12 +15,14 @@ namespace Aria2Sharp
 
         public event EventHandler<Aria2NotificationEventArgs> Notification;
         public event EventHandler<Aria2Exception> Error;
+        public string Secret { get; set; }
 
-        public Aria2RPC(string url = "ws://localhost:6800/jsonrpc")//TODO: secret
+        public Aria2RPC(string host = "localhost", ushort port = 6800)
         {
-            webSocket = new ClientWebSocketEx(url);
+            webSocket = new ClientWebSocketEx($"ws://{host}:{port}/jsonrpc");
             webSocket.Options.KeepAliveInterval = TimeSpan.MaxValue;
             webSocket.Message += OnMessage;
+            Secret = "pica";
         }
 
         private void OnMessage(object sender, string msg)
@@ -49,12 +51,17 @@ namespace Aria2Sharp
         private async Task<JToken> Call(string method, params JToken[] args)
         {
             long id = currentId++;
+            JArray parameters = new JArray();
+            if (!string.IsNullOrEmpty(Secret))
+                parameters.Add($"token:{Secret}");
+            foreach (var arg in args)
+                parameters.Add(arg);
             JObject obj = new JObject
             {
                 ["jsonrpc"] = "2.0",
                 ["id"] = id.ToString(),
                 ["method"] = method,
-                ["params"] = JArray.FromObject(args)
+                ["params"] = parameters
             };
 
             TaskCompletionSource<JToken> waiter = new TaskCompletionSource<JToken>();
@@ -79,7 +86,7 @@ namespace Aria2Sharp
             cts.Token.Register(o =>
             {
                 Message -= msgHandler;
-                ((TaskCompletionSource<JToken>) o).TrySetCanceled();
+                ((TaskCompletionSource<JToken>)o).TrySetCanceled();
             }, waiter);
             return await waiter.Task;
         }
