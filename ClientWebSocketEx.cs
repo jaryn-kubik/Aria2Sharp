@@ -10,22 +10,25 @@ namespace Aria2Sharp
     {
         private readonly ClientWebSocket webSocket = new ClientWebSocket();
         private readonly byte[] buffer = new byte[1024];
-        private readonly TaskCompletionSource<bool> connected = new TaskCompletionSource<bool>();
+        private readonly string url;
+        private TaskCompletionSource<bool> connected;
 
         public event EventHandler<string> Message;
         public ClientWebSocketOptions Options => webSocket.Options;
-        public bool Connected => connected.Task.IsCompleted;
-        
-        public Task SendAsync(string str)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(str);
-            return webSocket.SendAsync(new ArraySegment<byte>(data), WebSocketMessageType.Text, true, CancellationToken.None);
-        }
 
-        public Task ConnectAsync(string url)
+        public ClientWebSocketEx(string url) { this.url = url; }
+
+        public async Task SendAsync(string str)
         {
-            webSocket.ConnectAsync(new Uri(url), CancellationToken.None).ContinueWith(OnConnected);
-            return connected.Task;
+            if (connected == null)
+            {
+                connected = new TaskCompletionSource<bool>();
+                await webSocket.ConnectAsync(new Uri(url), CancellationToken.None).ContinueWith(OnConnected);
+            }
+            await connected.Task;
+
+            byte[] data = Encoding.UTF8.GetBytes(str);
+            await webSocket.SendAsync(new ArraySegment<byte>(data), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
         private async void OnConnected(Task task)

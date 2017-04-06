@@ -7,7 +7,7 @@ namespace Aria2Sharp
 {
     public class Aria2
     {
-        public RPC.Aria2RPC RPC { get; } = new RPC.Aria2RPC();
+        public Aria2RPC RPC { get; } = new Aria2RPC();
         public Process Process { get; private set; }
 
         public event EventHandler<string> Output;

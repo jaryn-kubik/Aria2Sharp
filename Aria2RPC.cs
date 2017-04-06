@@ -10,19 +10,18 @@ namespace Aria2Sharp
 {
     public partial class Aria2RPC
     {
-        private readonly ClientWebSocketEx webSocket = new ClientWebSocketEx();
+        private readonly ClientWebSocketEx webSocket;
         private event Action<long, JToken, JToken> Message;
 
         public event EventHandler<Aria2NotificationEventArgs> Notification;
         public event EventHandler<Aria2Exception> Error;
 
-        public Aria2RPC()//TODO: secret
+        public Aria2RPC(string url = "ws://localhost:6800/jsonrpc")//TODO: secret
         {
+            webSocket = new ClientWebSocketEx(url);
             webSocket.Options.KeepAliveInterval = TimeSpan.MaxValue;
             webSocket.Message += OnMessage;
         }
-
-        public Task ConnectAsync(string url = "ws://localhost:6800/jsonrpc") => webSocket.ConnectAsync(url);
 
         private void OnMessage(object sender, string msg)
         {
