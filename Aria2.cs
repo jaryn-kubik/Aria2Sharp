@@ -7,17 +7,18 @@ namespace Aria2Sharp
 {
     public class Aria2
     {
-        public Aria2RPC RPC { get; } = new Aria2RPC();
+        public Aria2RPC RPC { get; }
         public Process Process { get; private set; }
 
         public event EventHandler<string> Output;
         public event EventHandler<string> Error;
 
-        public Aria2()
+        public Aria2(string host = "localhost", ushort port = 6800, bool secure = false)
         {
             var processes = Process.GetProcessesByName("aria2c");
             if (processes.Length > 0)
                 Process = processes[0];
+            RPC = new Aria2RPC(host, port, secure);
         }
 
         public void Start(Aria2Options args)
@@ -28,6 +29,8 @@ namespace Aria2Sharp
 
             args[Aria2Option.enable_rpc] = "true";
             args[Aria2Option.enable_color] = "false";
+            args[Aria2Option.rpc_listen_port] = RPC.Port.ToString();
+            args[Aria2Option.rpc_secure] = RPC.Secure ? "true" : "false";
 
             string arguments = args.Aggregate("", (str, a) => $"{str} --{a.Key.ToString().Replace('_', '-')}={a.Value}");
             Process = new Process

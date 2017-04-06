@@ -16,13 +16,19 @@ namespace Aria2Sharp
         public event EventHandler<Aria2NotificationEventArgs> Notification;
         public event EventHandler<Aria2Exception> Error;
         public string Secret { get; set; }
+        public string Host { get; }
+        public long Port { get; }
+        public bool Secure { get; }
 
-        public Aria2RPC(string host = "localhost", ushort port = 6800)
+        public Aria2RPC(string host = "localhost", ushort port = 6800, bool secure = false)
         {
-            webSocket = new ClientWebSocketEx($"ws://{host}:{port}/jsonrpc");
+            Host = host;
+            Port = port;
+            Secure = secure;
+            var protocol = secure ? "wss" : "ws";
+            webSocket = new ClientWebSocketEx($"{protocol}://{host}:{port}/jsonrpc");
             webSocket.Options.KeepAliveInterval = TimeSpan.MaxValue;
             webSocket.Message += OnMessage;
-            Secret = "pica";
         }
 
         private void OnMessage(object sender, string msg)

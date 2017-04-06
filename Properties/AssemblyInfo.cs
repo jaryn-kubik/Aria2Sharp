@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aria2.NET")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Aria2Sharp")]
+[assembly: AssemblyDescription("Aria2 C# Wrapper")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Aria2.NET")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("Aria2Sharp")]
+[assembly: AssemblyCopyright("Copyright © Jaryn 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
