@@ -1,4 +1,4 @@
-﻿namespace Aria2.NET
+﻿namespace Aria2Sharp
 {
     public class Aria2Peer
     {

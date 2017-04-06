@@ -1,5 +1,9 @@
-﻿namespace Aria2.NET
+﻿using System.Collections.Generic;
+
+namespace Aria2Sharp
 {
+    public class Aria2Options : Dictionary<Aria2Option, string> { }
+
     public enum Aria2Option
     {
         all_proxy,

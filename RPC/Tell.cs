@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public partial class Aria2RPC
     {

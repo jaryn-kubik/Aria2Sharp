@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public enum Aria2Notification
     {

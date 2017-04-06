@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public class ClientWebSocketEx
     {

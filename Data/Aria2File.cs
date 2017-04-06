@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public class Aria2File
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public partial class Aria2RPC
     {

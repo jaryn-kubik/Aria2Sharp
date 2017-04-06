@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public class Aria2
     {
-        public Aria2RPC RPC { get; } = new Aria2RPC();
+        public RPC.Aria2RPC RPC { get; } = new RPC.Aria2RPC();
         public Process Process { get; private set; }
 
         public event EventHandler<string> Output;
@@ -21,7 +20,7 @@ namespace Aria2.NET
                 Process = processes[0];
         }
 
-        public void Start(Dictionary<Aria2Option, string> args)
+        public void Start(Aria2Options args)
         {
             if (args.TryGetValue(Aria2Option.input_file, out string input_file))
                 if (!File.Exists(input_file))

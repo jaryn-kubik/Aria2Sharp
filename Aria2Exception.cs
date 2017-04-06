@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aria2.NET
+namespace Aria2Sharp
 {
     public class Aria2Exception : Exception
     {
