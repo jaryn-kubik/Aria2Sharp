@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Aria2.NET
 {
-    public partial class Aria2
+    public partial class Aria2RPC
     {
         public Task<Aria2Stats> GetGlobalStat() => Call<Aria2Stats>("aria2.getGlobalStat");
         public Task<Aria2Version> GetVersion() => Call<Aria2Version>("aria2.getVersion");

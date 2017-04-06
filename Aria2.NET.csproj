@@ -44,6 +44,7 @@
     <Compile Include="Aria2.cs" />
     <Compile Include="Aria2Exception.cs" />
     <Compile Include="Aria2Notification.cs" />
+    <Compile Include="Aria2RPC.cs" />
     <Compile Include="Data\Aria2File.cs" />
     <Compile Include="Data\Aria2Info.cs" />
     <Compile Include="Class1.cs" />
@@ -53,14 +54,14 @@
     <Compile Include="Data\Aria2Stats.cs" />
     <Compile Include="Data\Aria2Uri.cs" />
     <Compile Include="Data\Aria2Version.cs" />
-    <Compile Include="Methods\Aria2.WithOptions.cs" />
-    <Compile Include="Methods\Aria2.System.cs" />
-    <Compile Include="Data\Aria2Option.cs" />
+    <Compile Include="RPC\WithOptions.cs" />
+    <Compile Include="RPC\System.cs" />
+    <Compile Include="Aria2Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Methods\Aria2.Tell.cs" />
-    <Compile Include="Methods\Aria2.Control.cs" />
+    <Compile Include="RPC\Tell.cs" />
+    <Compile Include="RPC\Control.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

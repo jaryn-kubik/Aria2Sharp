@@ -10,10 +10,12 @@ namespace Aria2.NET
     {
         private readonly ClientWebSocket webSocket = new ClientWebSocket();
         private readonly byte[] buffer = new byte[1024];
+        private readonly TaskCompletionSource<bool> connected = new TaskCompletionSource<bool>();
 
-        public EventHandler<string> Message;
+        public event EventHandler<string> Message;
         public ClientWebSocketOptions Options => webSocket.Options;
-
+        public Task Connected => connected.Task;
+        
         public Task SendAsync(string str)
         {
             byte[] data = Encoding.UTF8.GetBytes(str);
@@ -22,14 +24,13 @@ namespace Aria2.NET
 
         public Task ConnectAsync(string url)
         {
-            var connected = new TaskCompletionSource<bool>();
-            webSocket.ConnectAsync(new Uri(url), CancellationToken.None).ContinueWith(OnConnected, connected);
+            webSocket.ConnectAsync(new Uri(url), CancellationToken.None).ContinueWith(OnConnected);
             return connected.Task;
         }
 
-        private async void OnConnected(Task task, object state)
+        private async void OnConnected(Task task)
         {
-            ((TaskCompletionSource<bool>)state).SetResult(true);
+            connected.SetResult(true);
             var str = new StringBuilder();
             while (webSocket.State == WebSocketState.Open)
             {

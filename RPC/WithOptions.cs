@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Aria2.NET
 {
-    public partial class Aria2
+    public partial class Aria2RPC
     {
         public Task<string> AddUri(string[] uris, IDictionary<Aria2Option, string> options = null, long position = long.MaxValue)
             => Call<string>("aria2.addUri", JArray.FromObject(uris), SerializeOptions(options), position);

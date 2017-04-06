@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Aria2.NET
 {
-    public partial class Aria2
+    public partial class Aria2RPC
     {
         public Task<string> Remove(string gid) => Call<string>("aria2.remove", gid);
         public Task<string> ForceRemove(string gid) => Call<string>("aria2.forceRemove", gid);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Aria2.NET
 {
-    public partial class Aria2
+    public partial class Aria2RPC
     {
         public Task<Aria2Info> TellStatus(string gid, params string[] keys)
             => Call<Aria2Info>("aria2.tellStatus", gid, TellKeysNormalize(keys));
