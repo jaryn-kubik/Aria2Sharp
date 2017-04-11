@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aria2.cs" />
-    <Compile Include="Aria2Exception.cs" />
     <Compile Include="Aria2Notification.cs" />
     <Compile Include="Aria2RPC.cs" />
     <Compile Include="Data\Aria2Bittorent.cs" />

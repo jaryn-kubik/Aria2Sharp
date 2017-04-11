@@ -14,7 +14,7 @@ namespace Aria2Sharp
         private event Action<long, JToken, JToken> Message;
 
         public event EventHandler<Aria2NotificationEventArgs> Notification;
-        public event EventHandler<Aria2Exception> Error;
+        public event EventHandler<Exception> Error;
         public string Secret { get; set; }
         public string Host { get; }
         public long Port { get; }
@@ -29,6 +29,7 @@ namespace Aria2Sharp
             webSocket = new ClientWebSocketEx($"{protocol}://{host}:{port}/jsonrpc");
             webSocket.Options.KeepAliveInterval = TimeSpan.MaxValue;
             webSocket.Message += OnMessage;
+            webSocket.Error += (s, e) => Error?.Invoke(s, e);
         }
 
         private void OnMessage(object sender, string msg)
@@ -46,7 +47,7 @@ namespace Aria2Sharp
                 if (!id.HasValue)
                 {
                     var error = result["error"];
-                    Error?.Invoke(this, new Aria2Exception(error["code"], error["message"]));
+                    Error?.Invoke(this, new Exception($"{error["code"]}: {error["message"]}."));
                 }
                 else
                     Message?.Invoke(id.Value, result["result"], result["error"]);
@@ -78,7 +79,7 @@ namespace Aria2Sharp
                 try
                 {
                     if (error != null)
-                        waiter.TrySetException(new Aria2Exception(error["code"], error["message"]));
+                        waiter.TrySetException(new Exception($"{error["code"]}: {error["message"]}."));
                     else
                         waiter.TrySetResult(result);
                 }
