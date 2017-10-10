@@ -27,6 +27,9 @@ namespace Aria2Sharp
                 if (!File.Exists(input_file))
                     File.Create(input_file);
 
+            if (args.TryGetValue(Aria2Option.dir, out string dir))
+                args[Aria2Option.dir] = $"\"{dir.TrimEnd('\\')}\"";
+
             args[Aria2Option.enable_rpc] = "true";
             args[Aria2Option.enable_color] = "false";
             args[Aria2Option.rpc_listen_port] = RPC.Port.ToString();
